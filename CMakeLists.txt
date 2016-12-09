@@ -4,6 +4,12 @@ project(support_private_dynamic_cast CXX)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+option(BASE_DEFAULT_VISIBILITY "Enables default visibility for the
+base class" ON)
+
+if(BASE_DEFAULT_VISIBILITY)
+  add_definitions("-DBASE_DEFAULT_VISIBILITY")
+endif()
 
 add_library(base STATIC "base.cxx" "derived.cxx")
 set_target_properties(base PROPERTIES CXX_VISIBILITY_PRESET hidden)

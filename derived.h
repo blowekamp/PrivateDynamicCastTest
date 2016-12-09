@@ -1,3 +1,6 @@
+#ifndef DERIVED_H
+#define DERIVED_H
+
 #include "base.h"
 
 struct derived
@@ -6,9 +9,11 @@ struct derived
   virtual ~derived();
 };
 
-template <int I = 0>
+template <int I>
 struct derivedI
   :public base
 {
   virtual ~derivedI() {};
 };
+
+#endif

@@ -8,10 +8,12 @@ int main(void)
 
   base *obj = create();
 
+  int fail = 0;
+
   if (dynamic_cast<derived*>(obj)== NULL)
     {
     std::cout << "dynamic_cast for \'derived\' failed!" << std::endl;
-    return 1;
+    ++fail;
     }
   else
     {
@@ -24,12 +26,12 @@ int main(void)
   if (dynamic_cast<derivedI<0>*>(obj)== NULL)
     {
     std::cout << "dynamic_cast for \'derivedI\' failed!" << std::endl;
-    return 1;
+    ++fail;
     }
   else
     {
     std::cout << "dynamic_cast for \'derivedI\' succeeded!" << std::endl;
     delete obj;
     }
-  return 0;
+  return fail;
 }
