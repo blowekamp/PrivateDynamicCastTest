@@ -5,3 +5,10 @@ struct derived
 {
   virtual ~derived();
 };
+
+template <int I = 0>
+struct derivedI
+  :public base
+{
+  virtual ~derivedI() {};
+};

@@ -17,6 +17,19 @@ int main(void)
     {
     std::cout << "dynamic_cast for \'derived\' succeeded!" << std::endl;
     delete obj;
-    return 0;
     }
+
+  obj = createI();
+
+  if (dynamic_cast<derivedI<0>*>(obj)== NULL)
+    {
+    std::cout << "dynamic_cast for \'derivedI\' failed!" << std::endl;
+    return 1;
+    }
+  else
+    {
+    std::cout << "dynamic_cast for \'derivedI\' succeeded!" << std::endl;
+    delete obj;
+    }
+  return 0;
 }
