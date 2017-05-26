@@ -1,16 +1,16 @@
 # Test case for C++ `dynamic_cast`ing of duplicate hidden symbols
 
-When C++ type's RTTI cannot be resolved to a unique symbol across a
+When a C++ type's run-time type information (RTTI) cannot be resolved to a unique symbol across a
 process failues related to dynamic_cast can occur. Specifically and
-currently, GCC is resilient to duplicate RTTI of a type, while OSX's
-clang with libc++ fails with duplicate symbols.
+currently, GCC is resilient to duplicate RTTI, while OSX's
+clang with libc++ fails when RTTI symbols are duplicated.
 
-This test project demonstrates failing cases for dynamic_cast on the
+This test project demonstrates failing cases of dynamic_cast on the
 OSX platform.
 
 The test case has a library which implements a factory method
-"create", which returns a constructed "deceived" class as a "base"
-class pointer. This resulting object this then dynamically casted to
+"create", which returns a constructed "derived" class as a "base"
+class pointer. This resulting object is then dynamically cast to
 the derived class in the main executable.
 
 This project has a CMake option "BASE_DEFAULT_VISIBILITY" to control
@@ -21,9 +21,10 @@ passes.
 
 On OSX the behavior is more interesting:
 
-- If "base" and "derived" have hidden visibility. Duplicate type RTTI
+- If "base" and "derived" have hidden visibility. Duplicated RTTI
   will be in both the executable and the shared library. The
-  dynamic_cast success but a message is logged into the system.log:
+  `dynamic_cast` of the hidden "base" object pointer to the hidden
+  "derived" object pointersucceeds but a message is logged into the system.log:
   "dynamic_cast error 2: One or more of the following type_info's  has
   hidden visibility.  They should all have public visibility.   4base,
   8derivedIILi0EE, 8derivedIILi0EE."
