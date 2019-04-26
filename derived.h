@@ -13,7 +13,7 @@ template <int I>
 struct derivedI
   :public base
 {
-  virtual ~derivedI() {};
+  virtual ~derivedI() = default;
 };
 
 #endif

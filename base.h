@@ -8,7 +8,9 @@ __attribute__ ((visibility ("default")))
 #endif
 base
 {
-  virtual ~base() = 0;
+  virtual ~base() = default;
+
+  virtual void something(void);
 };
 
 #endif
