@@ -1,5 +1,7 @@
 #include "base.h"
 
-base::~base() {}
+void base::something(void)
+{
+}
 
 
